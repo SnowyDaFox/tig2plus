@@ -3,7 +3,7 @@ var game;
 var bgOnly = false,
   showcaseOnly = false;
 
-var version = "v1.16.1";
+var version = "v1.16.2";
 (() => {
   var e = {
       8465: (e, t, a) => {
@@ -20151,6 +20151,7 @@ var version = "v1.16.1";
                           !(i == undefined ? false : i.init) &&
                           !i?.isVoid &&
                           !i?.isBoss &&
+                          !i.isFade &&
                           !(null == r ? void 0 : r.destroyed) &&
                           !r?.off),
                           (a.width = i.width * t),
