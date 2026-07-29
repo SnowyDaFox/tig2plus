@@ -3,7 +3,7 @@ var game;
 var bgOnly = false,
   showcaseOnly = false;
 
-var version = "v1.16.2";
+var version = "v1.17.0";
 (() => {
   var e = {
       8465: (e, t, a) => {
@@ -51698,7 +51698,6 @@ var version = "v1.16.2";
   
                 reader.onload = function (evt) {
                   resolve(evt.target.result);
-                  console.warn(evt.target.result, resolve)
                 };
   
                 reader.readAsText(file);
@@ -68994,6 +68993,149 @@ var version = "v1.16.2";
             l((i = i.apply(e, t || [])).next());
           });
         };
+        const UserlevelsView = makeCustomSprite({
+          init: ({ updateState }) => {
+            let loadData = (page) => {
+              updateState((t) =>
+                Object.assign(Object.assign({}, t), {
+                  page: page,
+                  loading: true,
+                  data: null,
+                  selectedLevel: null,
+                }),
+              );
+              fetch(`https://www.userlevels.com/api/impossible/levels?page=${page}`).then(
+                (x) => x.json()
+              ).then((x) => updateState((t) =>
+                Object.assign(Object.assign({}, t), {
+                  loading: false,
+                  data: x,
+                  lastPage: x.last_page,
+                }),
+              ));
+            };
+            loadData(1);
+            return { loading: true, page: 1, data: null, selectedLevel: null, lastPage: null, loadPageData: loadData};
+          },
+          loop: ({ state, getInputs, props }) => {
+            let inputs = getInputs().keysJustPressed;
+            inputs.Escape && props.goBack();
+            if (state.loading) {
+              return Object.assign({}, state);
+            }
+            inputs.ArrowLeft && (state.data.prev_page_url && state.loadPageData(state.page - 1));
+            inputs.ArrowRight && (state.data.next_page_url && state.loadPageData(state.page + 1));
+            return Object.assign({}, state);
+          },
+          render: ({ state, device, props }) => {
+            const { fullWidth: fullWidth, fullHeight: fullHeight } = device.size;
+            let levels = state?.data?.data;
+            
+            return [
+              state.loading ? n({
+                  text: `${localize("LOADING")}...`,
+                  color: ve,
+                  font: { size: 15 },
+                }) : ScrollContainer({
+                id: "ChooseSongList",
+                containerWidth: fullWidth,
+                containerHeight: fullHeight - 140,
+                contentHeight: 40 * (levels.length + 1),
+                y: fullHeight / 2 - 70,
+                sprites: (t) =>
+                  levels.flatMap((a, s) => [
+                    Ar({
+                      id: `LevelButton-${s}`,
+                      width: fullWidth - 240,
+                      height: 30,
+                      text:
+                        `${a.title} - ${a.creator.name}`,
+                      selected: state.selectedLevel === a,
+                      colorLeft: xe,
+                      colorMid: xe,
+                      colorRight: xe,
+                      selectedColorLeft: Re,
+                      selectedColorMid: Re,
+                      selectedColorRight: Re,
+                      colorOpacities: [1, 0.75, 0],
+                      noPress: t,
+                      onPress: () => {
+                        state.selectedLevel = a;
+                      },
+                      x: -100,
+                      y: -20 - 40 * s,
+                    }),
+                  ]),
+              }),
+              Fo({
+                id: "BackButton",
+                text: localize("BACK"),
+                width: 80,
+                height: 40,
+                onPress: props.goBack,
+                x: -fullWidth / 2 + 60,
+                y: -fullHeight / 2 + 40,
+              }),
+              Uf({
+                id: "Title",
+                text: "USERLEVELS.COM",
+                width: 200,
+                height: 35,
+                x: -fullWidth / 2 + 120,
+                y: fullHeight / 2 - 40,
+              }),
+              Fo({
+                id: "LastPage",
+                text: "<",
+                width: 40,
+                height: 40,
+                disabled: state.loading,
+                onPress: () => {
+                  state.data.prev_page_url && state.loadPageData(state.page - 1)
+                },
+                x: -40,
+                y: -fullHeight / 2 + 40,
+              }),
+              n({
+                text: `${state.page}/${state.lastPage || "..."}`,
+                color: ve,
+                font: { size: 15, weight: 500 },
+                y: -fullHeight / 2 + 40,
+              }),
+              Fo({
+                id: "NextPage",
+                text: ">",
+                width: 40,
+                height: 40,
+                disabled: state.loading,
+                onPress: () => {
+                  state.data.next_page_url && state.loadPageData(state.page + 1)
+                },
+                x: 40,
+                y: -fullHeight / 2 + 40,
+              }),
+              Fo({
+                id: "ImportButton",
+                text: localize("IMPORT"),
+                width: 100,
+                height: 40,
+                disabled: state.loading,
+                onPress: () => {
+                  const n = Cf(state.selectedLevel.string),
+                    s = (e) => {
+                      (device.audio("audio/menu/error.wav").play(0),
+                        (state.error = e));
+                    };
+                  if (n instanceof Error) return void s("Invalid level data");
+                  props.importLevel(n);
+                  props.goBack();
+                },
+                x: fullWidth / 2 - 70,
+                y: -fullHeight / 2 + 40,
+              }),
+            ];
+          }
+        });
         const hy = makeCustomSprite({
           init: ({ device: e, updateState: t }) => (
             Promise.all([
@@ -69076,7 +69218,7 @@ var version = "v1.16.2";
                   fadeOutMusic: e.fadeOutMusic,
                 }),
               ];
-            const p = (e) =>
+            const importLevel = (e) =>
               uy(this, void 0, void 0, function* () {
                 const t = yield Jp.saveLevel(
                   a.storage,
@@ -69120,7 +69262,7 @@ var version = "v1.16.2";
                       Object.assign(Object.assign({}, e), { view: "import" }),
                     );
                   },
-                  importLevel: p,
+                  importLevel: importLevel,
                 }),
               ];
             if ("import" === t.view)
@@ -69142,11 +69284,22 @@ var version = "v1.16.2";
                           }),
                         );
                   },
-                  importLevel: p,
+                  importLevel: importLevel,
                 }),
               ];
             if ("userlevels" === t.view)
-              return []
+              return [
+                UserlevelsView({
+                  id: "UserlevelsView",
+                  goBack: () => {
+                    i((e) =>
+                      Object.assign(Object.assign({}, e), { view: "main" }),
+                    );
+                  },
+                  importLevel: importLevel,
+                })
+              ];
+
             const g = () => {
               i((e) =>
                 Object.assign(Object.assign({}, e), {
@@ -69211,6 +69364,19 @@ var version = "v1.16.2";
                     height: 35,
                     x: -r / 2 + 120,
                     y: o / 2 - 40,
+                  }),
+                  Fo({
+                    id: "UserlevelsButton",
+                    text: "USERLEVELS.COM",
+                    width: 160,
+                    height: 40,
+                    onPress: () => {
+                      i((e) =>
+                        Object.assign(Object.assign({}, e), { view: "userlevels" }),
+                      );
+                    },
+                    x: ((-r / 2 + 60) + (r / 2 - 200)) / 2,
+                    y: -o / 2 + 40,
                   }),
                   Fo({
                     id: "NewButton",
