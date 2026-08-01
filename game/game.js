@@ -47545,7 +47545,7 @@ var version = "v1.17.1";
             {
               levelName: "Aurora",
               levelFileName: "aurora",
-
+              author: "d016",
               song: hl.songs.aura,
               unlockedByIndex: null,
               x: 0,
@@ -67268,7 +67268,7 @@ var version = "v1.17.1";
               const g = s.checkpoints.didFinish
                   ? "100%"
                   : `${Math.floor((s.checkpoints.furthestFrame / a) * 100)}%`,
-                offset = author == undefined ? 0 : -15,
+                offset = 0,
                 m = s.noCheckpoints.didFinish
                   ? "100%"
                   : `${Math.floor((s.noCheckpoints.furthestFrame / a) * 100)}%`,
@@ -67302,7 +67302,7 @@ var version = "v1.17.1";
                     baseline: "bottom",
                     weight: 800,
                   },
-                  text: name.toUpperCase(),
+                  text: (name).toUpperCase(),
                   color: Be,
                   x: -155,
                   y: 100,
@@ -67314,7 +67314,7 @@ var version = "v1.17.1";
                     baseline: "bottom",
                     style: "italic",
                   },
-                  text: localize("artist"),
+                  text: author ? localize("level by") : localize("artist"),
                   color: Be,
                   x: -155,
                   y: 80,
@@ -67326,37 +67326,11 @@ var version = "v1.17.1";
                     weight: 600,
                     baseline: "bottom",
                   },
-                  text: e.author,
+                  text: author ? author : e.author,
                   color: Be,
-                  x: -120,
+                  x: -120 + (author ? 5 : 0),
                   y: 80,
                 }),
-                author &&
-                  n({
-                    font: {
-                      align: "left",
-                      weight: 500,
-                      baseline: "bottom",
-                      style: "italic",
-                    },
-                    text: localize("level by"),
-                    color: Be,
-                    x: -155,
-                    y: 60,
-                  }),
-                author &&
-                  n({
-                    font: {
-                      size: author.length > 20 ? 12 : 15,
-                      align: "left",
-                      weight: 600,
-                      baseline: "bottom",
-                    },
-                    text: author,
-                    color: Be,
-                    x: -110,
-                    y: 60,
-                  }),
                 e.label
                   ? n({
                       font: {
