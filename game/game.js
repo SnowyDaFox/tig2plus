@@ -3,7 +3,7 @@ var game;
 var bgOnly = false,
   showcaseOnly = false;
 
-var version = "v1.17.1";
+var version = "v1.17.2";
 (() => {
   var e = {
       8465: (e, t, a) => {
@@ -45617,12 +45617,19 @@ var version = "v1.17.1";
                 bpm: 132,
                 isBonusSong: true,
               },
+
               forYou: {
                 name: "For You (+ Waterfall mashup)",
                 author: "ColBreakz & EXODIE, SkybreakEDM",
                 fileName: "audio/tracks/colbreakz-for-you.mp3",
                 bpm: 145,
                 isBonusSong: true,
+              },
+              zenith: {
+                name: "Nana",
+                author: "Geoxor",
+                fileName: "audio/tracks/geoxor-nana.mp3",
+                bpm: 128,
               },
 
               chaozFantasy: {
@@ -45696,12 +45703,6 @@ var version = "v1.17.1";
                 bpm: 125,
                 length: "12 mins",
                 isBonusSong: true,
-              },
-              zenith: {
-                name: "Zenith",
-                author: "Geoxor",
-                fileName: "audio/tracks/geoxor-zenith.mp3",
-                bpm: 128,
               },
               superUltra: {
                 name: "Super Ultra",
