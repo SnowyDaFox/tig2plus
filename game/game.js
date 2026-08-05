@@ -42259,7 +42259,7 @@ var version = "v1.17.2";
                 inViewLayout: h,
                 inViewLayoutAtTime: inViewLayoutAtTime,
                 fullLayout: g,
-                justPlacedObject: m,
+                justPlacedObject: justPlacedObject,
                 noSpace: f,
                 isLoading: y,
                 playerSkin: E,
@@ -42289,7 +42289,7 @@ var version = "v1.17.2";
                   }),
                 ];
               const b = a ? t : e.map((e) => g[e.array][e.index]),
-                S = (m && g[m.array][m.index]) || null,
+                S = (justPlacedObject && g[justPlacedObject.array][justPlacedObject.index]) || null,
                 I =
                   e.length > 0
                     ? e
@@ -42514,7 +42514,7 @@ var version = "v1.17.2";
                   runHistory: runHistory,
                   runHistoryIndex: i,
                 }),
-                Dr({
+                /*Dr({
                   id: "Waveform",
                   song: c,
                   x: runHistory[i].playerX,
@@ -42524,7 +42524,19 @@ var version = "v1.17.2";
                   waveformData: waveformData,
                   waveformLengthInBeats: 10,
                   speedMultiplier: runHistory[i].playerSpeedMultiplier,
-                }),
+                }),*/
+                ...([30, 50, 70].map( (x) => m({ color: Be,
+                    opacity: 0.8,
+                  thickness: 5,
+                  x: runHistory[i].playerX + x * runHistory[i].playerDir,
+                  y: runHistory[i].playerY,
+                  path: [
+                    [0, 15],
+                    [15, 0],
+                    [0, -15]
+                  ],
+                  scaleX: runHistory[i].playerDir,
+                }))),
                 _ &&
                   Er(
                     Object.assign(Object.assign({ id: "SelectedBorder" }, _), {
