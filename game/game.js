@@ -24754,6 +24754,15 @@ var version = "v1.17.2";
             let n = new vn(t);
             if (null != i) this.loadSequence(t, a, i);
             else {
+              if (!this.atlas.findRegion) {
+                throw new Error(
+                  "Region not found in atlas: " +
+                    a +
+                    " (region attachment: " +
+                    t +
+                    ") THIS IS NORMAL!! JUST REFRESH THE PAGE!"
+                )
+              }
               let e = this.atlas.findRegion(a);
               if (!e)
                 throw new Error(
