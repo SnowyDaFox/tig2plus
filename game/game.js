@@ -20122,12 +20122,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20170,12 +20170,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20220,12 +20220,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20268,12 +20268,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20317,12 +20317,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20366,12 +20366,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20413,12 +20413,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20460,12 +20460,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20513,12 +20513,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20557,12 +20557,12 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i, n;
                       return `Block-${null !==
-                          (n =
-                            null === (i = e.inGame) || void 0 === i
-                              ? void 0
-                              : i.indexes[a]) && void 0 !== n
-                          ? n
-                          : a
+                        (n =
+                          null === (i = e.inGame) || void 0 === i
+                            ? void 0
+                            : i.indexes[a]) && void 0 !== n
+                        ? n
+                        : a
                         }`;
                     },
                   }),
@@ -20988,8 +20988,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21027,8 +21027,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21066,8 +21066,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21105,8 +21105,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21146,8 +21146,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21187,8 +21187,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21227,8 +21227,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -21266,8 +21266,8 @@ var version = "v1.17.2";
                     testId: (t, a) => {
                       var i;
                       return `Spike-${null === (i = e.inGame) || void 0 === i
-                          ? void 0
-                          : i.indexes[a]
+                        ? void 0
+                        : i.indexes[a]
                         }`;
                     },
                   }),
@@ -56880,10 +56880,10 @@ var version = "v1.17.2";
               () => [y(
                 {
                   fileName: `images/level/boss3/asteroid${e.asteroid.radius <= 15
-                      ? "60"
-                      : e.asteroid.radius <= 25
-                        ? "120"
-                        : "210"
+                    ? "60"
+                    : e.asteroid.radius <= 25
+                      ? "120"
+                      : "210"
                     }.png`,
                   width: 2.4 * e.asteroid.radius,
                   height: 2.4 * e.asteroid.radius,
@@ -63385,7 +63385,9 @@ var version = "v1.17.2";
         loop({ props: e, getInputs: t, device: a, getContext: i }) {
           const { settings: cursorSettings } = i(Se);
           const desiredCursor =
-            cursorSettings.hideMouseWhenPlaying && !e.paused
+            cursorSettings.hideMouseWhenPlaying &&
+              !e.paused &&
+              !e.finishedLevel
               ? "none"
               : "default";
           if (document.body.style.cursor !== desiredCursor) {
@@ -65563,7 +65565,8 @@ var version = "v1.17.2";
                 gameplayOverlay.Single(
                   {
                     backToMenu: () => e.backToMenu(false),
-                    paused: t.paused || t.mutValues.levelState.finishedLevel,
+                    paused: t.paused,
+                    finishedLevel: t.mutValues.levelState.finishedLevel,
                     attempt: t.mutValues.levelState.attempt,
                     frame: t.mutValues.levelState.frame,
                     maxFrame: e.maxFrame,
@@ -65710,6 +65713,7 @@ var version = "v1.17.2";
                         })
                       : (a.boosters = void 0),
                       (a.paused = t.paused),
+                      (a.finishedLevel = t.mutValues.levelState.finishedLevel),
                       (a.hideUi = n.hideUi),
                       (a.isPractice = t.mutValues.checkpoints.length > 0),
                       (console.log(t.mutValues.checkpoints.length)),
@@ -78763,9 +78767,9 @@ var version = "v1.17.2";
             e.achievementModalQueue.length > 0
               ? Uo({
                 id: `AchievementModal-${(null === (i = e.achievementModalQueue[0]) ||
-                    void 0 === i
-                    ? void 0
-                    : i.id) || ""
+                  void 0 === i
+                  ? void 0
+                  : i.id) || ""
                   }`,
                 initShow: false,
                 shouldShow: true,
