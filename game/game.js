@@ -3,7 +3,7 @@ var game;
 var bgOnly = false,
   showcaseOnly = false;
 
-var version = "v1.17.1";
+var version = "v1.17.2";
 (() => {
   var e = {
     8465: (e, t, a) => {
@@ -24736,6 +24736,15 @@ var version = "v1.17.1";
           let n = new vn(t);
           if (null != i) this.loadSequence(t, a, i);
           else {
+            if (!this.atlas.findRegion) {
+              throw new Error(
+                "Region not found in atlas: " +
+                a +
+                " (region attachment: " +
+                t +
+                ") THIS IS NORMAL!! JUST REFRESH THE PAGE!"
+              )
+            }
             let e = this.atlas.findRegion(a);
             if (!e)
               throw new Error(
@@ -34041,12 +34050,8 @@ var version = "v1.17.1";
               }),
             ],
         }),
-
         vo = makeCustomSprite({
           render({ props: e }) {
-            if (e.fullScreen) {
-              return [];
-            };
             const t = e.large ? 1.2 : 1;
             return [
               e.isSelected || e.isOpen
@@ -35433,6 +35438,7 @@ var version = "v1.17.1";
         }),
         Po = makeSprite({
           render: ({ props: e }) => [
+            // real switch
             imageArray({
               fileName: `images/themes/${e.theme}/switch-platform.png`,
               props: (e) => ({ width: e.width, height: e.height }),
@@ -35446,18 +35452,14 @@ var version = "v1.17.1";
                     e.inGame && e.inGame.playerX,
                     e.inGame && e.inGame.fallTypes,
                     e.inGame && e.inGame.playerDir,
-                  )),
-                  (n.direction = t.direction));
-                ((n.scale = {
-                  x: 1,
-                  y: n.direction == 0 || n.direction == 180 ? 1 : -1,
-                }),
-                  (n.rotation =
-                    t.rotation + (void 0 !== n.editor ? t.direction : 0)));
+                  )));
+                n.rotation =
+                  t.rotation;
                 n.scaleY = n.direction == 0 || n.direction == 180 ? 1 : -1;
               },
               array: () => e.switchPlatforms,
             }),
+            // editor only
             ifConditional(
               () => void 0 !== e.editor,
               () => [
@@ -35474,7 +35476,7 @@ var version = "v1.17.1";
                       (e.x = t.x + a),
                       (e.y = t.y),
                       (e.rotation =
-                        (0 === t.rotation ? -90 : 0) + t.direction));
+                        (0 === t.rotation - t.direction ? -90 : 0) + t.direction));
                   },
                   array: () => e.switchPlatforms,
                 }),
@@ -37772,6 +37774,11 @@ var version = "v1.17.1";
         },
         Tr = [],
         Rr = [],
+        setSwitchRotation = function (e) {
+          e.rotation = e.initPosition == "up" ? -90 : 0;
+          e.rotation += e.direction;
+          return e;
+        },
         objPropsMenu = function (e, t, a, i, debug) {
           switch (t.type) {
             case "spike":
@@ -40507,7 +40514,7 @@ var version = "v1.17.1";
                               set: (e) =>
                                 Object.assign(Object.assign({}, e), {
                                   initPosition: "up",
-                                  rotation: -90,
+                                  rotation: -90 + t.direction,
                                 }),
                             });
                           });
@@ -40525,7 +40532,7 @@ var version = "v1.17.1";
                               set: (e) =>
                                 Object.assign(Object.assign({}, e), {
                                   initPosition: "right",
-                                  rotation: 0,
+                                  rotation: 0 + t.direction,
                                 }),
                             });
                           });
@@ -40546,9 +40553,9 @@ var version = "v1.17.1";
                               array: "switchPlatforms",
                               index: j,
                               set: (e) =>
-                                Object.assign(Object.assign({}, e), {
+                                setSwitchRotation(Object.assign(Object.assign({}, e), {
                                   direction: 0,
-                                }),
+                                }))
                             });
                           });
                         },
@@ -40563,9 +40570,9 @@ var version = "v1.17.1";
                               array: "switchPlatforms",
                               index: j,
                               set: (e) =>
-                                Object.assign(Object.assign({}, e), {
+                                setSwitchRotation(Object.assign(Object.assign({}, e), {
                                   direction: 270,
-                                }),
+                                }))
                             });
                           });
                         },
@@ -40580,9 +40587,9 @@ var version = "v1.17.1";
                               array: "switchPlatforms",
                               index: j,
                               set: (e) =>
-                                Object.assign(Object.assign({}, e), {
+                                setSwitchRotation(Object.assign(Object.assign({}, e), {
                                   direction: 180,
-                                }),
+                                }))
                             });
                           });
                         },
@@ -40597,9 +40604,9 @@ var version = "v1.17.1";
                               array: "switchPlatforms",
                               index: j,
                               set: (e) =>
-                                Object.assign(Object.assign({}, e), {
+                                setSwitchRotation(Object.assign(Object.assign({}, e), {
                                   direction: 90,
-                                }),
+                                }))
                             });
                           });
                         },
@@ -42243,7 +42250,7 @@ var version = "v1.17.1";
               inViewLayout: h,
               inViewLayoutAtTime: inViewLayoutAtTime,
               fullLayout: g,
-              justPlacedObject: m,
+              justPlacedObject: justPlacedObject,
               noSpace: f,
               isLoading: y,
               playerSkin: E,
@@ -42273,7 +42280,7 @@ var version = "v1.17.1";
                 }),
               ];
             const b = a ? t : e.map((e) => g[e.array][e.index]),
-              S = (m && g[m.array][m.index]) || null,
+              S = (justPlacedObject && g[justPlacedObject.array][justPlacedObject.index]) || null,
               I =
                 e.length > 0
                   ? e
@@ -42498,7 +42505,7 @@ var version = "v1.17.1";
                 runHistory: runHistory,
                 runHistoryIndex: i,
               }),
-              Dr({
+              /*Dr({
                 id: "Waveform",
                 song: c,
                 x: runHistory[i].playerX,
@@ -42508,7 +42515,20 @@ var version = "v1.17.1";
                 waveformData: waveformData,
                 waveformLengthInBeats: 10,
                 speedMultiplier: runHistory[i].playerSpeedMultiplier,
-              }),
+              }),*/
+              ...([30, 50, 70].map((x) => m({
+                color: Be,
+                opacity: 0.8,
+                thickness: 5,
+                x: runHistory[i].playerX + x * runHistory[i].playerDir,
+                y: runHistory[i].playerY,
+                path: [
+                  [0, 15],
+                  [15, 0],
+                  [0, -15]
+                ],
+                scaleX: runHistory[i].playerDir,
+              }))),
               _ &&
               Er(
                 Object.assign(Object.assign({ id: "SelectedBorder" }, _), {
@@ -45603,12 +45623,19 @@ var version = "v1.17.1";
               bpm: 132,
               isBonusSong: true,
             },
+
             forYou: {
               name: "For You (+ Waterfall mashup)",
               author: "ColBreakz & EXODIE, SkybreakEDM",
               fileName: "audio/tracks/colbreakz-for-you.mp3",
               bpm: 145,
               isBonusSong: true,
+            },
+            zenith: {
+              name: "Nana",
+              author: "Geoxor",
+              fileName: "audio/tracks/geoxor-nana.mp3",
+              bpm: 128,
             },
 
             chaozFantasy: {
@@ -45682,12 +45709,6 @@ var version = "v1.17.1";
               bpm: 125,
               length: "12 mins",
               isBonusSong: true,
-            },
-            zenith: {
-              name: "Zenith",
-              author: "Geoxor",
-              fileName: "audio/tracks/geoxor-zenith.mp3",
-              bpm: 128,
             },
             superUltra: {
               name: "Super Ultra",
@@ -62724,7 +62745,7 @@ var version = "v1.17.1";
                 {
                   containerHeight: a.size.fullHeight - 70 + 50,
                   containerWidth: a.size.fullWidth,
-                  contentHeight: 850 + mouseSettingOffset,
+                  contentHeight: 900 + mouseSettingOffset,
                   y: (a.size.fullHeight - 70) / 2 + 35,
                   sprites: (o) => [
                     c({
@@ -63184,7 +63205,7 @@ var version = "v1.17.1";
                       () => [
                         Rm.Single(
                           {
-                            text: "HIDE MOUSE WHEN PLAYING",
+                            text: "HIDE MOUSE & BUTTONS WHEN PLAYING",
                             selected: false,
                             onPress: () => {
                               var a;
@@ -66212,7 +66233,7 @@ var version = "v1.17.1";
                 strokeColor: Ye,
                 x: 280,
               }),
-              document.fullscreenEnabled
+              document.fullscreenEnabled && e.isTouchScreen
                 ? vo({
                   id: "FullScreen",
                   fullScreen: true,
@@ -73461,7 +73482,6 @@ var version = "v1.17.1";
             const e = [
               ["CREATED BY", ["ED BENTLEY"]],
               ["MODDED BY", ["d016"]],
-              ["PORTED BY", ["SnowyDaFox"]],
               ["INSPIRED BY", ["Alfredo/Outline Gamer"]],
               [
                 "SPECIAL THANKS TO",
@@ -74323,7 +74343,7 @@ var version = "v1.17.1";
                   x: 0,
                   y: u - 50,
                 }),
-                document.fullscreenEnabled
+                document.fullscreenEnabled && a.isTouchScreen
                   ? vo({
                     id: "FullScreen",
                     fullScreen: true,
