@@ -63205,7 +63205,7 @@ var version = "v1.17.2";
                       () => [
                         Rm.Single(
                           {
-                            text: "HIDE MOUSE & BUTTONS WHEN PLAYING",
+                            text: "HIDE MOUSE WHEN PLAYING",
                             selected: false,
                             onPress: () => {
                               var a;
