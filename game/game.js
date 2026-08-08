@@ -65563,7 +65563,7 @@ var version = "v1.17.2";
                 gameplayOverlay.Single(
                   {
                     backToMenu: () => e.backToMenu(false),
-                    paused: t.paused,
+                    paused: t.paused || t.mutValues.levelState.finishedLevel,
                     attempt: t.mutValues.levelState.attempt,
                     frame: t.mutValues.levelState.frame,
                     maxFrame: e.maxFrame,
